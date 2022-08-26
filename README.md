@@ -3,4 +3,4 @@
 
 > Library for analyze Excel data
 
-![image](https://user-images.githubusercontent.com/34784356/186209299-4b7fe993-42c8-429f-9715-c374981596dd.png)
+![image](https://user-images.githubusercontent.com/34784356/186956216-fca95d81-85c9-4219-8ecb-7b706ddbb56f.png)
