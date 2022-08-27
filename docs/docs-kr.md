@@ -13,7 +13,7 @@
 ```py
 import nextcel
 
-data = nextcel.load_excel("자료.xlsx")
+data = nextcel.load_excel("data.xlsx")
 ```
 
 
@@ -26,7 +26,7 @@ data = nextcel.load_excel("자료.xlsx")
 ```py
 import nextcel
 
-data = nextcel.load_excel("자료.xlsx")
+data = nextcel.load_excel("data.xlsx")
 
 row_0 = data.get_row(0)
 
@@ -48,7 +48,7 @@ print(row_0)
 ```py
 import nextcel
 
-data = nextcel.load_excel("자료.xlsx")
+data = nextcel.load_excel("data.xlsx")
 
 print(data.names)
 ```
