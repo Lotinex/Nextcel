@@ -1,5 +1,5 @@
 <a href="#"><img alt="logo" src="https://user-images.githubusercontent.com/34784356/185958025-5b270316-4457-4e90-8c59-fc0dd7b9c7aa.png" height="100" /></a>
-# Nextcel [![nextcel pypi](https://img.shields.io/pypi/v/nextcel?color=blue)](https://pypi.org/project/nextcel/)
+# Nextcel [![nextcel pypi](https://img.shields.io/pypi/v/nextcel)](https://pypi.org/project/nextcel/)
 
 > Library for analyze Excel data
 
