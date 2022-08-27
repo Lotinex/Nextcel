@@ -1,4 +1,4 @@
-# Nextcel 1.2.1 docmentation(KR)
+# Nextcel 1.2.2 docmentation(KR)
 
 ![image](https://user-images.githubusercontent.com/34784356/187020858-f3e5ad2c-eccc-45d8-a40b-2f912c15325d.png)
 사진 속 엑셀 데이터를 기준으로 예시를 서술합니다.
