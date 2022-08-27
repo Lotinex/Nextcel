@@ -8,7 +8,8 @@ def load_excel(path: str) -> ExcelData:
         예시
         --
         ```py
-        data = load_excel("자료.xlsx")
+        import nextcel
+        data = nextcel.load_excel("자료.xlsx")
         ```
     """
     return ExcelData(pandas.read_excel(path))

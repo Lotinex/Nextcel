@@ -8,7 +8,7 @@ class ExcelData:
         self.data = data.fillna("null")
     def get_row(self, index: int) -> Row:
         """
-            데이터의 index + 1번째 줄을 불러옵니다.
+            데이터의 n번째 줄을 불러옵니다. (인덱스로 취급)
 
             예시
             --
@@ -28,7 +28,7 @@ class ExcelData:
 
     def find_by_value(self, **args) -> list[Row]:
         """
-            데이터들 중 특정 항목의 값이 일치하는 데이터들만 모아서 가져옵니다.
+            데이터들 중 특정 항목의 값이 원하는 값과 일치하는 것들만 모아서 가져옵니다.
 
             예시
             --
