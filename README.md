@@ -7,6 +7,9 @@
 
 If you find a bug or have any suggestions, please write an issue. (You can contact me personally)
 
+## Installation
+```
+pip install nextcel
+```
 ## Documentation
 - [한국어](/docs/docs-kr.md)
-
