@@ -151,6 +151,16 @@ class ExcelData:
 
     def count_null(self) -> list:
         """
+            항목별로 빈 값(null)의 총 합을 계산합니다.
+
+            예시
+            --
+            ```py
+            import nextcel
+            data = nextcel.load_excel("자료.xlsx")
+
+            print(data.count_null())
+            ```
         """
         R = Counter()
         for i, name in enumerate(self.names):
