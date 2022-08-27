@@ -1,4 +1,4 @@
-# Nextcel 1.1.1 docmentation(KR)
+# Nextcel 1.2.1 docmentation(KR)
 
 ![image](https://user-images.githubusercontent.com/34784356/187020858-f3e5ad2c-eccc-45d8-a40b-2f912c15325d.png)
 사진 속 엑셀 데이터를 기준으로 예시를 서술합니다.
@@ -59,6 +59,12 @@ print(data.names)
 기압 QC플래그', '해면기압(hPa)', '해면기압 QC플래그', '일조(hr)', '일조 QC플래그', '일사(MJ/m2)', '일사 QC플래그', '적설(cm)', '3시간신적설(cm)', '전운량(10분위)', '중하층운량(10분위)', '운형(운형약어)', '최저운고(100m )', '시정(10m)', 
 '지면상태(지면상태코드)', '현상번호(국내식)', '지면온도(°C)', '지면온도 QC플래그', '5cm 지중온도(°C)', '10cm 지중온도(°C)', '20cm 지중온도(°C)', '30cm 지중온도(°C)']
 ```
+## ExcelData.pandas
+
+### 설명
+
+pandas 라이브러리의 기능을 사용할 때 접근할 속성입니다.
+
 
 ## ExcelData.find_by_value()
 
@@ -248,7 +254,40 @@ print(data)
 9   108  서울 2022-08-15 10:00:00    28.6     null       0      null      6.3     null       200  ...           7     2000         null       null      28.5        null         27.7           27.3          26.8          27.0
 (이후 생략...)
 ```
+## ExcelData.count_null()
 
+### 설명
+
+항목별로 빈 값(null)의 총 합을 계산합니다.
+
+### 예시
+
+```py
+import nextcel
+
+data = nextcel.load_excel("자료.xlsx")
+
+print(data.count_null())
+```
+
+### 출력
+```
+지점   0
+지점명   0
+일시   0
+기온(°C)   0
+기온 QC플래그   24
+강수량(mm)   18
+강수량 QC플래그   23
+풍속(m/s)   0
+풍속 QC플래그   24
+풍향(16방위)   0
+풍향 QC플래그   24
+습도(%)   0
+습도 QC플래그   24
+증기압(hPa)   0
+(이후 생략...)
+```
 
 ## Row.get()
 

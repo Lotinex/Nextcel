@@ -1,6 +1,7 @@
 from ast import Call
 from pandas import DataFrame
 from typing import Any, Callable, Iterator
+from nextcel.lib.Counter import Counter
 
 from nextcel.lib.Row import Row
 
@@ -140,5 +141,30 @@ class ExcelData:
         for i, e in enumerate(self.data[column]):
             if(fn(e)):
                 self.data[column][i] = value
+
+    @property
+    def pandas(self): # self.data should be private
+        """
+            pandas API를 직접 사용할 때 사용 가능한 속성
+        """
+        return self.data
+
+    def count_null(self) -> list:
+        """
+        """
+        R = Counter()
+        for i, name in enumerate(self.names):
+            R.append({
+                "name": name,
+                "count": 0
+            })
+            for j, e in enumerate(self.data[name]):
+                if e == "null":
+                    R[i]["count"] += 1
+        return R
+
+
+
+
 
 
