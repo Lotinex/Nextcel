@@ -1,4 +1,4 @@
-# Nextcel 1.0.1 docmentation(KR)
+# Nextcel 1.1.1 docmentation(KR)
 
 ![image](https://user-images.githubusercontent.com/34784356/187020858-f3e5ad2c-eccc-45d8-a40b-2f912c15325d.png)
 사진 속 엑셀 데이터를 기준으로 예시를 서술합니다.
@@ -216,6 +216,39 @@ print(data)
 13  108  서울 2022-08-15 14:00:00     0.0     null    null      null      6.3     null       180  ...           7     2000         null       null      29.3        null         28.7           28.1          27.0          26.9
 (이후 생략...)
 ```
+## ExcelData.replace_column_cond()
+
+### 설명
+
+특정 항목의 데이터들 중 조건을 만족하는 값을 모두 치환합니다.
+
+### 예시
+
+```py
+import nextcel
+
+data = nextcel.load_excel("자료.xlsx")
+data.replace_column_cond("강수량(mm)", lambda value: value == nextcel.null, 0)
+
+print(data)
+```
+
+### 출력
+```                     
+                                                   <강수량(mm)>  
+0   108  서울 2022-08-15 01:00:00    27.4     null       0      null      2.1     null       180  ...           5     2000         null       null      26.2        null         28.1           27.9          27.4          27.3
+1   108  서울 2022-08-15 02:00:00    27.4     null       0      null      4.0     null       200  ...           5     2000         null       null      25.9        null         28.0           27.8          27.3          27.3
+2   108  서울 2022-08-15 03:00:00    27.4     null       0      null      3.5     null       200  ...           6     2000         null       null      25.8        null         27.9           27.7          27.2          27.2
+3   108  서울 2022-08-15 04:00:00    27.3     null       0      null      5.0     null       200  ...           6     2000         null       null      25.7        null         27.8           27.6          27.2          27.2
+4   108  서울 2022-08-15 05:00:00    27.3     null       0      null      3.9     null       200  ...           6     2000         null       null      25.6        null         27.6           27.5          27.1          27.2
+5   108  서울 2022-08-15 06:00:00    27.5     null       0      null      5.4     null       200  ...           6     2000         null       null      25.6        null         27.6           27.4          27.0          27.1
+6   108  서울 2022-08-15 07:00:00    27.6     null       0      null      5.6     null       200  ...           6     2000         null       null      26.1        null         27.5           27.3          26.9          27.1
+7   108  서울 2022-08-15 08:00:00    27.7     null       0      null      5.1     null       200  ...           6     2000         null       null      26.3        null         27.5           27.3          26.9          27.1
+8   108  서울 2022-08-15 09:00:00    28.1     null       0      null      4.6     null       200  ...           6     2000         null       null      27.4        null         27.5           27.2          26.8          27.0
+9   108  서울 2022-08-15 10:00:00    28.6     null       0      null      6.3     null       200  ...           7     2000         null       null      28.5        null         27.7           27.3          26.8          27.0
+(이후 생략...)
+```
+
 
 ## Row.get()
 
@@ -264,4 +297,3 @@ print(row_0)
 ```
 [108, '서울', Timestamp('2022-08-15 01:00:00'), 27.4, -1, -1, -1, 2.1, -1, 180, -1, 84, -1, 30.6, 24.4, 994.6, -1, 1004.2, -1, -1, 9.0, -1, 9.0, -1, -1, 10, 10, -1, 5, 2000, -1, -1, 26.2, -1, 28.1, 27.9, 27.4, 27.3]
 ```
-

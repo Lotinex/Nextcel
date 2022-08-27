@@ -1,3 +1,4 @@
+from ast import Call
 from pandas import DataFrame
 from typing import Any, Callable, Iterator
 
@@ -122,5 +123,22 @@ class ExcelData:
         """
         for i, e in enumerate(self.data[column]):
             self.data[column][i] = value
+
+    def replace_column_cond(self, column: str, fn: Callable[[Any], bool], value: Any) -> None:
+        """
+            특정 항목의 데이터들 중 조건을 만족하는 값을 모두 치환합니다.
+
+            예시
+            --
+            ```py
+            import nextcel
+            data = nextcel.load_excel("자료.xlsx")
+
+            data.replace_column_cond("강수량(mm)", lambda value: value == nextcel.null, 0)
+        """
+
+        for i, e in enumerate(self.data[column]):
+            if(fn(e)):
+                self.data[column][i] = value
 
 
