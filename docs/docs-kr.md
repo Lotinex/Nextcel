@@ -6,8 +6,8 @@
 
 ## 분류
 
-- [기본(nextcel.~)](/kr/main.md)
-- [ExcelData](/kr/ExcelData.md)
-- [Row](/kr/Row.md)
+- [기본(nextcel.~)](/docs/kr/main.md)
+- [ExcelData](/docs/kr/ExcelData.md)
+- [Row](/docs/kr/Row.md)
 
 
