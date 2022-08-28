@@ -5,4 +5,6 @@ nextcel\__init__.py
 nextcel\lib\Counter.py
 nextcel\lib\ExcelData.py
 nextcel\lib\Row.py
+nextcel\lib\convert.py
+nextcel\lib\isnan.py
 nextcel\lib\load_excel.py
