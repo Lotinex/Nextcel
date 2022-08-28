@@ -1,6 +1,6 @@
 import pandas
-
 from nextcel.lib.ExcelData import ExcelData
+
 def load_excel(path: str) -> ExcelData:
     """
         지정한 경로의 엑셀 파일을 불러옵니다.

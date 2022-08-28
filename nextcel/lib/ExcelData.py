@@ -1,16 +1,17 @@
-from ast import Call
+import numpy
 from pandas import DataFrame
 from typing import Any, Callable, Iterator
 from nextcel.lib.Counter import Counter
 
 from nextcel.lib.Row import Row
+from nextcel.lib.isnan import isnan
 
 class ExcelData:
     def __init__(self, data: DataFrame) -> None:
-        self.data = data.fillna("null")
+        self.data = data
     def get_row(self, index: int) -> Row:
         """
-            데이터의 n번째 줄을 불러옵니다. (인덱스로 취급)
+            데이터의 n번째 줄(row)을 불러옵니다. (인덱스로 취급)
 
             예시
             --
@@ -46,7 +47,10 @@ class ExcelData:
         R = []
         for row in self.data.values.tolist():
             index = self.names.index(args["name"])
-            if args["value"] in row and row[index] == args["value"]:
+            if isnan(args["value"]):
+                if True in numpy.isnan(numpy.array(row)) and isnan(row[index]):
+                    R.append(Row(row, self.names))
+            elif args["value"] in row and row[index] == args["value"]:
                 R.append(Row(row, self.names))
         return R
     
@@ -104,7 +108,10 @@ class ExcelData:
             data.replace_value(27.4, 100)
             ```
         """
-        self.data = self.data.replace(target, value)
+        if(isnan(target)):
+            self.data = self.data.fillna(value)
+        else:
+            self.data = self.data.replace(target, value)
 
     def __repr__(self): # DataFrame으로 내보냄
         return self.data.__repr__()
@@ -123,7 +130,8 @@ class ExcelData:
             data.replace_column("기온(°C)", 100)
         """
         for i, e in enumerate(self.data[column]):
-            self.data[column][i] = value
+            self.data.loc[:, (column, i)] = value
+            #self.data[column][i] = value
 
     def replace_column_cond(self, column: str, fn: Callable[[Any], bool], value: Any) -> None:
         """
@@ -140,7 +148,7 @@ class ExcelData:
 
         for i, e in enumerate(self.data[column]):
             if(fn(e)):
-                self.data[column][i] = value
+                self.data.loc[:, (column, i)] = value
 
     @property
     def pandas(self): # self.data should be private
@@ -151,7 +159,7 @@ class ExcelData:
 
     def count_null(self) -> list:
         """
-            항목별로 빈 값(null)의 총 합을 계산합니다.
+            항목별로 비어있는 값의 총 합을 계산합니다.
 
             예시
             --
@@ -172,6 +180,57 @@ class ExcelData:
                 if e == "null":
                     R[i]["count"] += 1
         return R
+    
+    def interpolate(self, **args: dict[str, str]) -> None:
+        """
+            비어있는 값을 보간합니다.
+
+            예시
+            --
+            ```py
+            import nextcel
+            data = nextcel.load_excel("자료.xlsx")
+
+            data.interpolate()
+            ```
+        """
+        #self.data = self.data.interpolate()
+
+        for column in self.data:
+            if not column in args['exclude']:
+                self.data[column] = self.data[column].interpolate(
+                    args['method'] if 'method' in args else 'linear'
+                )
+    def interpolate_column(self, column: str, method='linear') -> None:
+        """
+            특정 항목의 비어있는 값을 보간합니다.
+
+            예시
+            --
+            ```py
+            import nextcel
+            data = nextcel.load_excel("자료.xlsx")
+
+            data.interpolate_column("풍속(m/s)")
+            ```
+        """
+        self.data[column] = self.data[column].interpolate(method)
+
+    def delete_column(self, column: str) -> None:
+        """
+            특정 항목 전체를 삭제합니다.
+
+            예시
+            --
+            ```py
+            import nextcel
+            data = nextcel.load_excel("자료.xlsx")
+
+            data.delete_column("일시")
+            ```        
+        """
+        self.data = self.data.drop(columns=[column])
+
 
 
 
